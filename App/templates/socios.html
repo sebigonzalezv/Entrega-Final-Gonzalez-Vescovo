@@ -1,3 +1,4 @@
+<!-- Herencia de 'padre.html'-->
 {% extends "padre.html" %}
 
 {% block ContenidoQueCambia2 %}
@@ -10,12 +11,11 @@
                     <p class="lead">SGV cuenta con socios con los cuales ha desarrollado diversos proyectos.</p>
                     <p class="mb-0">Podes buscar nuestros socios en el siguiente formulario:</p>
                     <br>
-
+                    <!-- Formulario-->
                     <form action="{% url 'ResultadosSocios' %}" method="get">
                         <p>Nombre del socio: <input name="empresa"></p>
                         <button type="submit">Buscar</button>           
                     </form>
-
                 </div>
             </div>
         </div>

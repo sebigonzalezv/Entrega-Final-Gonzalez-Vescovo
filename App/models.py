@@ -1,12 +1,12 @@
 from django.db import models
 
-# Create your models here.
+# Modelos relacionados la proyecto
 
 class Profesional(models.Model):
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
     especialidad = models.CharField(max_length=30)
-    años_de_experiencia = models.IntegerField()
+    anos_de_experiencia = models.IntegerField()
     mail = models.EmailField()
 
     def __str__(self):
@@ -48,7 +48,7 @@ class Nuevo(models.Model):
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
     especialidad = models.CharField(max_length=30)
-    años_de_experiencia = models.IntegerField()
+    anos_de_experiencia = models.IntegerField()
     mail = models.EmailField()
 
     def __str__(self):

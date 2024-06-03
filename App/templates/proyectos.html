@@ -1,3 +1,4 @@
+<!-- Herencia de 'padre.html'-->
 {% extends "padre.html" %}
 
 {% block ContenidoQueCambia2 %}
@@ -10,12 +11,11 @@
                     <p class="lead">Se han desarrollado proyectos a lo largo de todo el país y a nivel mundial.</p>
                     <p class="mb-0">Podes buscar nuestros proyectos en el siguiente formulario:</p>
                     <br>
-
+                    <!-- Formulario-->
                     <form action="{% url 'ResultadosProyectos' %}" method="get">
                         <p>Nombre del proyecto: <input name="nombre"></p>
                         <button type="submit">Buscar</button>           
                     </form>
-
                 </div>
             </div>
         </div>

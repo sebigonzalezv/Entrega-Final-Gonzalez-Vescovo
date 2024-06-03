@@ -1,3 +1,4 @@
+<!-- Herencia de 'padre.html'-->
 {% extends "padre.html" %}
 
 {% block ContenidoQueCambia2 %}
@@ -7,15 +8,14 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <h2>Sumate a nuestro equipo</h2>
-                    <p class="lead">Si te interesaría formar parte de SGV Ingeniería Civil, esta es tu oportunidad.</p>
+                    <p class="lead">Si te interesaría formar parte de SGV, esta es tu oportunidad.</p>
                     <p class="mb-0">Dejanos tus datos en el siguiente formulario:</p>
                     <br>
-                    
+                    <!-- Formulario-->                    
                     <form action="{% url 'Nuevos' %}" method="post">{% csrf_token %}
                             {{miFormulario.as_p}}
                             <button type="submit">Enviar información</button>                            
                     </form>                    
-
                 </div>
             </div>
         </div>

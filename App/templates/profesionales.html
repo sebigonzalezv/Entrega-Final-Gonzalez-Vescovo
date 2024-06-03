@@ -1,3 +1,4 @@
+<!-- Herencia de 'padre.html'-->
 {% extends "padre.html" %}
 
 {% block ContenidoQueCambia2 %}
@@ -7,15 +8,14 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <h2>Profesionales</h2>
-                    <p class="lead">Los profesionales de la empresa cuentan con años de experiencia en cada una de sus especialidades.</p>
+                    <p class="lead">Los profesionales cuentan con años de experiencia en cada especialidad.</p>
                     <p class="mb-0">Podes buscar nuestros profesionales en el siguiente formulario:</p>
                     <br>
-
+                    <!-- Formulario-->
                     <form action="{% url 'ResultadosProfesionales' %}" method="get">
                         <p>Especialidad: <input name="especialidad"></p>
                         <button type="submit">Buscar</button>           
                     </form>
-
                 </div>
             </div>
         </div>

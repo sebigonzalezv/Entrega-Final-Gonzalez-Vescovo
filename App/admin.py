@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import *
 
-# Register your models here.
+# Registro de los modelos en el panel de administración
 
 admin.site.register(Profesional)
 admin.site.register(Proyecto)
