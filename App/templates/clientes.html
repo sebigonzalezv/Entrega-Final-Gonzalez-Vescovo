@@ -1,0 +1,24 @@
+{% extends "padre.html" %}
+
+{% block ContenidoQueCambia2 %}
+
+    <section class="py-5">
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <h2>Clientes</h2>
+                    <p class="lead">La empresa SGV cuenta con clientes de primer nivel y especializados en diferentes rubros.</p>
+                    <p class="mb-0">Podes buscar nuestros clientes en el siguiente formulario:</p>
+                    <br>
+
+                    <form action="{% url 'ResultadosClientes' %}" method="get">
+                        <p>Nombre del cliente: <input name="empresa"></p>
+                        <button type="submit">Buscar</button>           
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock ContenidoQueCambia2 %}
