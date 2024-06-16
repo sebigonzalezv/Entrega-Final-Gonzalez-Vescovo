@@ -3,10 +3,10 @@ from django.db import models
 # Modelos relacionados la proyecto
 
 class Profesional(models.Model):
-    nombre = models.CharField(max_length=30)
-    apellido = models.CharField(max_length=30)
-    especialidad = models.CharField(max_length=30)
-    anos_de_experiencia = models.IntegerField()
+    nombre = models.CharField(max_length=50)
+    apellido = models.CharField(max_length=50)
+    especialidad = models.CharField(max_length=50)
+    anos_de_experiencia = models.IntegerField(verbose_name="Años de experiencia")
     mail = models.EmailField()
 
     def __str__(self):
@@ -16,10 +16,10 @@ class Profesional(models.Model):
         verbose_name_plural = 'Profesionales'
 
 class Proyecto(models.Model):
-    nombre = models.CharField(max_length=30)
-    ubicacion = models.CharField(max_length=30)
-    tipo = models.CharField(max_length=60)
-    fecha_ejecucion = models.IntegerField()
+    nombre = models.CharField(max_length=50)
+    ubicacion = models.CharField(max_length=50)
+    tipo = models.CharField(max_length=100)
+    fecha_ejecucion = models.IntegerField(verbose_name="Fecha de ejecución")
 
     def __str__(self):
         return f"{self.nombre} - {self.ubicacion} - {self.fecha_ejecucion}"
@@ -29,25 +29,25 @@ class Proyecto(models.Model):
         unique_together = ('nombre', 'ubicacion')
 
 class Socio(models.Model):
-    empresa = models.CharField(max_length=30, unique=True)
-    especialidad = models.CharField(max_length=30)
+    empresa = models.CharField(max_length=50, unique=True)
+    especialidad = models.CharField(max_length=50)
     mail = models.EmailField()
 
     def __str__(self):
         return f"{self.empresa} - {self.especialidad}"
 
 class Cliente(models.Model):
-    empresa = models.CharField(max_length=30, unique=True)
-    especialidad = models.CharField(max_length=30)
+    empresa = models.CharField(max_length=50, unique=True)
+    especialidad = models.CharField(max_length=50)
     mail = models.EmailField()
 
     def __str__(self):
         return f"{self.empresa} - {self.especialidad}"
 
 class Nuevo(models.Model):
-    nombre = models.CharField(max_length=30)
-    apellido = models.CharField(max_length=30)
-    especialidad = models.CharField(max_length=30)
+    nombre = models.CharField(max_length=50)
+    apellido = models.CharField(max_length=50)
+    especialidad = models.CharField(max_length=50)
     anos_de_experiencia = models.IntegerField()
     mail = models.EmailField()
 

@@ -1,0 +1,56 @@
+<!-- Herencia de 'padre.html'-->
+{% extends "padre.html" %}
+
+{% block ContenidoQueCambia2 %}
+
+    <section class="py-5">
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <!--Descripción de quienes somos-->
+                    <h2>¿Quienes somos?</h2>
+                    <p class="lead">SGV es una empresa fundada en el año 2020 en la Ciudad Autónoma de Buenos Aires. Cuenta con profesionales de gran experiencia en cada uno de los sectores.</p>
+                    <br>
+                    <hr style="border: 1px solid black; width: 100%;">
+                    <br>
+                    <!--Listado de profesionales de la empresa-->
+                    <h2>Nuestros profesionales</h2>
+                    <p class="lead">Estos son todos los profesionales de nuestra empresa:</p>
+                    <ul>
+                        {% for i in profesionales %}
+                            <li>
+                                <a href="{% url 'DetalleProfesional' i.id %}">
+                                    {{i}}
+                                </a>
+                            </li>
+                            <!--Botones para actualizar y eliminar-->
+                            <div style="display: flex; column-gap: 10px;">
+                                <button>
+                                    <a href="{% url 'ActualizarProfesional' i.id %}">Actualizar</a>
+                                </button>
+                                <button>
+                                    <a href="{% url 'EliminarProfesional' i.id %}">Eliminar</a>
+                                </button>
+                            </div>
+                            <br>                            
+                        {% endfor %}
+                    </ul>
+                    <!--Link para agregar un nuevo profesional-->
+                    <a href="{% url 'CrearProfesional' %}">Agregar nuevo profesional</a>
+                    <br>
+                    <br>
+                    <hr style="border: 1px solid black; width: 100%;">
+                    <br>
+                    <!--Formulario para buscar profesionales-->
+                    <h2>Buscar profesionales:</h2>
+                    <p class="lead">Podes buscar nuestros profesionales en el siguiente formulario:</p>
+                    <form action="{% url 'ResultadosProfesionales' %}" method="get">
+                        <p>Especialidad: <input name="especialidad"></p>
+                        <button type="submit">Buscar</button>           
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock ContenidoQueCambia2 %}

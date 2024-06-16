@@ -1,0 +1,50 @@
+<!-- Herencia de 'padre.html'-->
+{% extends "padre.html" %}
+
+{% block ContenidoQueCambia2 %}
+
+    <section class="py-5">
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <!--Listado de socios de la empresa-->
+                    <h2>Nuestros socios</h2>
+                    <p class="lead">Estos son todos los socios de nuestra empresa:</p>
+                    <ul>
+                        {% for i in socios %}
+                            <li>
+                                <a href="{% url 'DetalleSocio' i.id %}">
+                                    {{i}}
+                                </a>
+                            </li>
+                            <!--Botones para actualizar y eliminar-->
+                            <div style="display: flex; column-gap: 10px;">
+                                <button>
+                                    <a href="{% url 'ActualizarSocio' i.id %}">Actualizar</a>
+                                </button>
+                                <button>
+                                    <a href="{% url 'EliminarSocio' i.id %}">Eliminar</a>
+                                </button>
+                            </div>
+                            <br>                            
+                        {% endfor %}
+                    </ul>
+                    <!--Link para agregar un nuevo socio-->
+                    <a href="{% url 'CrearSocio' %}">Agregar nuevo socio</a>
+                    <br>
+                    <br>
+                    <hr style="border: 1px solid black; width: 100%;">
+                    <br>
+                    <!--Formulario para buscar socios-->
+                    <h2>Buscar socios:</h2>
+                    <p class="lead">Podes buscar nuestros socios en el siguiente formulario:</p>
+                    <form action="{% url 'ResultadosSocios' %}" method="get">
+                        <p>Especialidad: <input name="especialidad"></p>
+                        <button type="submit">Buscar</button>           
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock ContenidoQueCambia2 %}

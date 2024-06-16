@@ -1,0 +1,35 @@
+<!-- Herencia de 'padre.html'-->
+{% extends "padre.html" %}
+
+{% block ContenidoQueCambia2 %}
+
+    <section class="py-5">
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <!-- Resultados de búsqueda-->
+                    <p class="lead">Se buscaron los clientes con la especialidad {{especialidad}}, obteniendo los siguientes resultados:</p>
+                    {% if empresa %}
+                        <ul>
+                            {% for i in empresa %}
+                            <li>
+                                {{i.empresa}}
+                                <br>
+                                Especialidad: {{i.especialidad}}
+                                <br>
+                                Mail de contacto: {{i.mail}}
+                            </li>
+                            <br>
+                            {% endfor %}
+                        </ul>
+                    <a href="{% url 'ListaClientes' %}">Regresar</a>
+                    {% else %}
+                    <p>No hubo coincidencias, inténtelo nuevamente.</p>
+                    <a href="{% url 'ListaClientes' %}">Regresar</a> 
+                    {% endif %}                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock ContenidoQueCambia2 %}

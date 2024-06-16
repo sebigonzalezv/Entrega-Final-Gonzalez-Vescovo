@@ -1,0 +1,50 @@
+<!-- Herencia de 'padre.html'-->
+{% extends "padre.html" %}
+
+{% block ContenidoQueCambia2 %}
+
+    <section class="py-5">
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <!--Listado de proyectos de la empresa-->
+                    <h2>Nuestros proyectos</h2>
+                    <p class="lead">Estos son todos los proyectos de nuestra empresa:</p>
+                    <ul>
+                        {% for i in proyectos %}
+                            <li>
+                                <a href="{% url 'DetalleProyecto' i.id %}">
+                                    {{i}}
+                                </a>
+                            </li>
+                            <!--Botones para actualizar y eliminar-->
+                            <div style="display: flex; column-gap: 10px;">
+                                <button>
+                                    <a href="{% url 'ActualizarProyecto' i.id %}">Actualizar</a>
+                                </button>
+                                <button>
+                                    <a href="{% url 'EliminarProyecto' i.id %}">Eliminar</a>
+                                </button>
+                            </div>
+                            <br>                            
+                        {% endfor %}
+                    </ul>
+                    <!--Link para agregar un nuevo proyecto-->
+                    <a href="{% url 'CrearProyecto' %}">Agregar nuevo proyecto</a>
+                    <br>
+                    <br>
+                    <hr style="border: 1px solid black; width: 100%;">
+                    <br>
+                    <!--Formulario para buscar proyectos-->
+                    <h2>Buscar proyectos:</h2>
+                    <p class="lead">Podes buscar nuestros proyectos en el siguiente formulario:</p>
+                    <form action="{% url 'ResultadosProyectos' %}" method="get">
+                        <p>Nombre: <input name="nombre"></p>
+                        <button type="submit">Buscar</button>           
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock ContenidoQueCambia2 %}

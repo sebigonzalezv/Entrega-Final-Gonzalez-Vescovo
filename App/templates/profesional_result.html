@@ -13,12 +13,21 @@
                         <ul>
                             {% for i in nombre %}
                             <li>
-                                {{i.nombre}} {{i.apellido}} - Especialidad: {{i.especialidad}} - Mail de contacto: {{i.mail}}
+                                {{i.nombre}} {{i.apellido}}
+                                <br>
+                                Especialidad: {{i.especialidad}}
+                                <br>
+                                Años de experiencia: {{i.anos_de_experiencia}}
+                                <br>
+                                Mail de contacto: {{i.mail}}
                             </li>
+                            <br>
                             {% endfor %}
                         </ul>
+                    <a href="{% url 'ListaProfesionales' %}">Regresar</a>
                     {% else %}
-                    <p>No hubo coincidencias, inténtelo nuevamente.</p> 
+                    <p>No hubo coincidencias, inténtelo nuevamente.</p>
+                    <a href="{% url 'ListaProfesionales' %}">Regresar</a> 
                     {% endif %}                    
                 </div>
             </div>

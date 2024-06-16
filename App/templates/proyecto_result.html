@@ -13,12 +13,21 @@
                         <ul>
                             {% for i in ubicacion %}
                             <li>
-                                {{i.nombre}} - Ubicación: {{i.ubicacion}} - Fecha de ejecución: {{i.fecha_ejecucion}}
+                                {{i.nombre}}
+                                <br>
+                                Ubicación: {{i.ubicacion}}
+                                <br>
+                                Tipo: {{i.tipo}}
+                                <br>
+                                Fecha de ejecución: {{i.fecha_ejecucion}}
                             </li>
+                            <br>
                             {% endfor %}
                         </ul>
+                    <a href="{% url 'ListaProyectos' %}">Regresar</a>
                     {% else %}
-                    <p>No hubo coincidencias, inténtelo nuevamente.</p> 
+                    <p>No hubo coincidencias, inténtelo nuevamente.</p>
+                    <a href="{% url 'ListaProyectos' %}">Regresar</a> 
                     {% endif %}                    
                 </div>
             </div>

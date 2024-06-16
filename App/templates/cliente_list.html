@@ -1,0 +1,50 @@
+<!-- Herencia de 'padre.html'-->
+{% extends "padre.html" %}
+
+{% block ContenidoQueCambia2 %}
+
+    <section class="py-5">
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <!--Listado de clientes de la empresa-->
+                    <h2>Nuestros clientes</h2>
+                    <p class="lead">Estos son todos los clientes de nuestra empresa:</p>
+                    <ul>
+                        {% for i in clientes %}
+                            <li>
+                                <a href="{% url 'DetalleCliente' i.id %}">
+                                    {{i}}
+                                </a>
+                            </li>
+                            <!--Botones para actualizar y eliminar-->
+                            <div style="display: flex; column-gap: 10px;">
+                                <button>
+                                    <a href="{% url 'ActualizarCliente' i.id %}">Actualizar</a>
+                                </button>
+                                <button>
+                                    <a href="{% url 'EliminarCliente' i.id %}">Eliminar</a>
+                                </button>
+                            </div>
+                            <br>                            
+                        {% endfor %}
+                    </ul>
+                    <!--Link para agregar un nuevo cliente-->
+                    <a href="{% url 'CrearCliente' %}">Agregar nuevo cliente</a>
+                    <br>
+                    <br>
+                    <hr style="border: 1px solid black; width: 100%;">
+                    <br>
+                    <!--Formulario para buscar socios-->
+                    <h2>Buscar clientes:</h2>
+                    <p class="lead">Podes buscar nuestros clientes en el siguiente formulario:</p>
+                    <form action="{% url 'ResultadosClientes' %}" method="get">
+                        <p>Especialidad: <input name="especialidad"></p>
+                        <button type="submit">Buscar</button>           
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock ContenidoQueCambia2 %}

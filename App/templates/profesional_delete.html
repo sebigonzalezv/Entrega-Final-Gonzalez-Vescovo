@@ -1,0 +1,21 @@
+<!-- Herencia de 'padre.html'-->
+{% extends "padre.html" %}
+
+{% block ContenidoQueCambia2 %}
+
+    <section class="py-5">
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <!--Formulario completo para eliminar un profesional-->
+                    <form action="{% url 'EliminarProfesional' profesional.id %}" method="post">{% csrf_token %}
+                        <p>¿Está seguro que desea eliminar este profesional?</p>  
+                        <button type="submit">Confirmar</button>
+                        <button><a href="{% url 'ListaProfesionales' %}">Cancelar</a></button>  
+                    </form>              
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock ContenidoQueCambia2 %}
