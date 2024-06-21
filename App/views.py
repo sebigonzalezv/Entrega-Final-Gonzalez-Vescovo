@@ -132,7 +132,7 @@ def nuevos(req):
 
         if miFormulario.is_valid():
             data = miFormulario.cleaned_data
-            nuevo = Nuevo(nombre=data['nombre'], apellido=data['apellido'], especialidad=data['especialidad'], anos_de_experiencia=data['anos_de_experiencia'], mail=data['mail'])
+            nuevo = Nuevo(nombre=data['nombre'], apellido=data['apellido'], especialidad=data['especialidad'], anos_de_experiencia=data['experiencia'], mail=data['mail'])
             nuevo.save()
             return render(req, "respuestas.html", {"message": "¡Solicitud enviada con éxito!"})
 
@@ -254,7 +254,7 @@ def edit(req):
         return render(req, "edit.html", {"miFormulario": miFormulario})
 
 # View para agregar un avatar
-@login_required
+login_required
 def add_avatar(req):
     
     if req.method == 'POST':

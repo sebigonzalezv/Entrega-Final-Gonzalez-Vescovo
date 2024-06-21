@@ -2,7 +2,7 @@
 
 Se desarrolló una página web para una empresa ficitcia de Ingeniería Civil, dedicada al cálculo de estructuras. La página web cuenta con lo siguiente:
 * Página de Inicio con imagen inicial, "¿Qué hacemos?" y "Mail de contacto"
-* Página de "¿Quienes somos? con los profesionales de la empresa
+* Página de "¿Quienes somos?" con los profesionales de la empresa
 * Página de Proyectos
 * Página de Socios
 * Página de Clientes
@@ -35,11 +35,9 @@ Se podrá ingresar a la aplicación en la URL: "http://127.0.0.1:8000/app/":
 * Registrar: Se crea un usuario y contraseña
 * Ingresar: Se debe iniciar sesión con el usuario y contraseña antes creados
 
-Para el testeo de la aplicación se recomienda iniciar sesión primero con un superusuario y luego con un usuario cualquier, para ver las diferencias entre ambos:
-1)  Superusuario:       sebigonzalezv
-    Contraseña:         123456
-2)  Usuario:            Ejemplo
-    Contraseña:         Ej123456
+Para el testeo de la aplicación se recomienda iniciar sesión primero con un superusuario y luego con un usuario cualquiera, para ver las diferencias entre ambos:
+1)  Superusuario: sebigonzalezv - Contraseña: 123456
+2)  Usuario: Ejemplo - Contraseña: Ej123456
 
 Una vez iniciada la sesión se podrán recorrer las diferentes partes con el "navbar":
 * Página de inicio: Se podrá enviar un mail en "Mail de contacto"
