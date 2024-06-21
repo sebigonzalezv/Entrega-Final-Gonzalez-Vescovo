@@ -9,7 +9,12 @@
                 <div class="col-lg-6">
                     <!--Descripción de quienes somos-->
                     <h2>¿Quienes somos?</h2>
-                    <p class="lead">SGV es una empresa fundada en el año 2020 en la Ciudad Autónoma de Buenos Aires. Cuenta con profesionales de gran experiencia en cada uno de los sectores.</p>
+                    <p class="lead">SGV = Sebastián González Vescovo</p>
+                    <p class="mb-0">Sebastián es el fundador de la empresa SGV. Es un ingeniero civil recibido en la Universidad de Buenos Aires que se dedica al cálculo de estructuras.</p>
+                    <br>
+                    <p class="mb-0">Actualmente se encuentra desarrollándose en el área de la programación, particularmente en lenguaje Python, HTML y SQL.</p>
+                    <br>
+                    <p class="mb-0">La empresa cuenta con gran equipo de profesionales que se dedican a diferentes áreas.</p>
                     <br>
                     <hr style="border: 1px solid black; width: 100%;">
                     <br>
@@ -24,6 +29,7 @@
                                 </a>
                             </li>
                             <!--Botones para actualizar y eliminar-->
+                            {% if user.is_superuser %}
                             <div style="display: flex; column-gap: 10px;">
                                 <button>
                                     <a href="{% url 'ActualizarProfesional' i.id %}">Actualizar</a>
@@ -32,12 +38,15 @@
                                     <a href="{% url 'EliminarProfesional' i.id %}">Eliminar</a>
                                 </button>
                             </div>
-                            <br>                            
+                            <br>   
+                            {% endif %}                         
                         {% endfor %}
                     </ul>
                     <!--Link para agregar un nuevo profesional-->
+                    {% if user.is_superuser %}
                     <a href="{% url 'CrearProfesional' %}">Agregar nuevo profesional</a>
                     <br>
+                    {% endif %}  
                     <br>
                     <hr style="border: 1px solid black; width: 100%;">
                     <br>

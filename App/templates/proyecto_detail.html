@@ -12,9 +12,17 @@
                     <br>
                     <h4>{{proyecto.nombre}}</h4>
                     <br>
-                    <p>Ubicación: {{proyecto.ubicacion}}</p>
-                    <p>Tipo: {{proyecto.tipo}}</p>
-                    <p>Fecha de ejecución: {{proyecto.fecha_ejecucion}}</p>           
+                    {% if proyecto.imagen.url %}
+                        <img src="{{proyecto.imagen.url}}" alt="proyectos" width="650px">
+                    {% else %}
+                        <p>El proyecto seleccionado no tiene imagen.</p>
+                    {% endif %}
+                    <br>
+                    <br>
+                    <h6>Ubicación: {{proyecto.ubicacion}}</h6>
+                    <h6>Tipo: {{proyecto.tipo}}</h6>
+                    <h6>Fecha de ejecución: {{proyecto.fecha_ejecucion}}</h6>   
+                    <br>
                     <a href="{% url 'ListaProyectos' %}">Regresar</a>
                 </div>
             </div>

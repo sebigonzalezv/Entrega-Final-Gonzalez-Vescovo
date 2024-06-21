@@ -4,10 +4,17 @@ from .forms import *
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 # View del inicio de la página web
 def inicio(req):
-    return render(req, "inicio.html", {})
+    try:
+        avatar = Avatar.objects.get(user=req.user.id)
+        return render(req, "inicio.html", {"url": avatar.imagen.url})
+    except:
+        return render(req, "inicio.html")
 
 # CRUD de Profesionales
 class ProfesionalList(ListView):
@@ -176,3 +183,92 @@ def resultados_clientes(req):
         return render(req, "cliente_result.html", {"empresa": empresa, "especialidad": especialidad, "mail": mail})       
     else:
         return render(req, "respuestas.html", {"message": "No completaste el formulario."})
+
+# View del Login de la página web
+def login_view(req):
+    
+    if req.method == 'POST':
+        miFormulario = AuthenticationForm(req, data=req.POST)
+
+        if miFormulario.is_valid():
+            data = miFormulario.cleaned_data
+            usuario = data["username"]
+            psw = data["password"]
+            user = authenticate(username=usuario, password=psw)
+
+            if user:
+                login(req, user)
+                return render(req, "respuestas.html", {"message": f"Bienvenido/a, {usuario}!"}) 
+            
+            else:
+                return render(req, "respuestas.html", {"message": "Datos incorrectos."})                  
+
+        else:
+            return render(req, "respuestas.html", {"message": "Datos inválidos."})              
+
+    else:
+        miFormulario = AuthenticationForm()
+        return render(req, "login.html", {"miFormulario": miFormulario})
+
+# View del Registro de la página web
+def register(req):
+    
+    if req.method == 'POST':
+        miFormulario = UserCreationForm(req.POST)
+
+        if miFormulario.is_valid():
+            data = miFormulario.cleaned_data
+            usuario = data["username"]
+            miFormulario.save()
+            return render(req, "respuestas.html", {"message": f"Usuario {usuario} creado con éxito!"})                  
+
+        else:
+            return render(req, "respuestas.html", {"message": "Datos inválidos."})              
+
+    else:
+        miFormulario = UserCreationForm()
+        return render(req, "register.html", {"miFormulario": miFormulario})
+
+# View para editar el perfil del usuario
+@login_required
+def edit(req):
+    usuario = req.user
+
+    if req.method == 'POST':
+        miFormulario = UserEditForm(req.POST, instance=req.user)
+
+        if miFormulario.is_valid():
+            data = miFormulario.cleaned_data
+            usuario.first_name = data["first_name"]
+            usuario.last_name = data["last_name"]
+            usuario.email = data["email"]
+            usuario.set_password(data["password1"])
+            usuario.save()
+            return render(req, "respuestas.html", {"message": "Datos actualizados con éxito."})  
+
+        else:
+            return render(req, "edit.html", {"miFormulario": miFormulario})            
+
+    else:
+        miFormulario = UserEditForm(instance=req.user)
+        return render(req, "edit.html", {"miFormulario": miFormulario})
+
+# View para agregar un avatar
+@login_required
+def add_avatar(req):
+    
+    if req.method == 'POST':
+        miFormulario = AvatarFormulario(req.POST, req.FILES)
+
+        if miFormulario.is_valid():
+            data = miFormulario.cleaned_data
+            avatar = Avatar(user=req.user, imagen=data["imagen"])
+            avatar.save()
+            return render(req, "respuestas.html", {"message": "Avatar cargado con éxito."})  
+
+        else:
+            return render(req, "respuestas.html", {"message": "Datos inválidos."})            
+
+    else:
+        miFormulario = AvatarFormulario()
+        return render(req, "add_avatar.html", {"miFormulario": miFormulario})

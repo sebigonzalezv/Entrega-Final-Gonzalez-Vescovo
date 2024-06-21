@@ -5,12 +5,34 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="{% url 'ListaProfesionales' %}">Quienes somos</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'ListaProyectos' %}">Proyectos</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'ListaSocios' %}">Socios</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'ListaClientes' %}">Clientes</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'Nuevos' %}">Sumate al equipo</a></li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'ListaProfesionales' %}">Quienes somos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'ListaProyectos' %}">Proyectos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'ListaSocios' %}">Socios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'ListaClientes' %}">Clientes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Nuevos' %}">Sumate al equipo</a></li>
+                {% endif %}
             </ul>
         </div>
+        {% if user.is_authenticated %}
+            <div style="padding-right: 10px; margin-left: 50px">
+                {% if url %}
+                    <a class="text-white-50 mb-0" href="{% url 'AddAvatar' %}"><img src="{{url}}" alt="avatar" height="80px"></a>
+                {% endif %} 
+                <a class="text-white-50 mb-0" href="{% url 'Edit' %}">{{user.username}}</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <form method="post" action="{% url 'Logout' %}"> {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Salir</button>
+                </form>
+            </div>
+        {% else %}
+            <div style="padding-right: 30px; margin-left: 300px">
+                <a class="btn btn-primary" href="{% url 'Register' %}">Registrarme</a>
+            </div>
+            <div style="padding-right: 30px">
+                <a class="btn btn-primary" href="{% url 'Login' %}">Ingresar</a>
+            </div>
+        {% endif %}  
     </div>
 </nav>

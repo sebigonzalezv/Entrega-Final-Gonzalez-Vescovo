@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Modelos relacionados la proyecto
 
@@ -20,6 +21,7 @@ class Proyecto(models.Model):
     ubicacion = models.CharField(max_length=50)
     tipo = models.CharField(max_length=100)
     fecha_ejecucion = models.IntegerField(verbose_name="Fecha de ejecución")
+    imagen = models.ImageField(upload_to='proyectos', blank=True, null=True)
 
     def __str__(self):
         return f"{self.nombre} - {self.ubicacion} - {self.fecha_ejecucion}"
@@ -53,3 +55,9 @@ class Nuevo(models.Model):
 
     def __str__(self):
         return f"{self.nombre} {self.apellido} - {self.especialidad}"
+
+class Avatar(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='avatares', blank=True, null=True)
+    def __str__(self):
+        return f"{self.user} - {self.imagen}"
